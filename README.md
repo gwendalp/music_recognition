@@ -4,19 +4,21 @@
  
  Dans le schema suivant vous trouverez le processus de construction de notre estimateur portable sur un ordinateur embarqué/ 
 
-<figure>
-    <img src="images/diagramme.png" alt="Présentationi" style="display: block; margin-left: auto;margin-right: auto; width: 70%;">
-</figure>
+
+
+![Chaine de Traitements](images/diagramme.png){ width=100% }
 
 ## :barber: Tracker :barber:
 Here is a tracker for each task we have to do.
 
 | Task            |Responsible | Progression      | Note |
 | ----------------|:----------:|:----------------:|:----:|
-| Classifieur SVM      |Mickael     |:heavy_check_mark:|      |
-| Extracteur des Features |Gwendal |:heavy_check_mark:|      |
-| Prediction  |Gwenddal      |:heavy_check_mark:|      |
-
+| Classifieur SVM      |Mickael     |Fait|      |
+| Classifieur Neural Network      |Mickael     |Fait|      |
+| Extracteur des Features |Gwendal |Fait|      |
+| Prediction  SVM|Gwendal      |Fait|      |
+| Prediction  Neural Network|Gwendal      |Partiellement|      |
+| Rapport  |Gwendal & Mickael      |Fait|      |
 
 ## Extraction des Features
 
@@ -92,12 +94,10 @@ Cela est correct. On peut voir notamment sur la matrice de confusion que les ré
 Sur un genre comme le classique nous avons une performance de 100 %, c'est très bon pour le métal aussi. Mais pour des genres musicaux proches 
 comme la pop ou le rock,  le SVM a plus de difficultés. 
 
-<figure>
-    <img src="images/confusion_matrix.png" alt="Confusion Matrix du Model" style="display: block; margin-left: auto;margin-right: auto; width: 70%;">
-</figure>
+![Matrice de confusion](images/confusion_matrix.png){ width=100%}
 
 
-## Machine Hôte
+## Machine Hote
 
 
 Le programme predict peut etre compilé sur une RPI contenant les fichiers de poids et de biais du SVM. 
