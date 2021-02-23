@@ -8,14 +8,14 @@
 
 using namespace std;
 
-void max_value(Eigen::VectorXd X, int& res)
+void max_value(Eigen::VectorXd X, int& max)
 {
-    res = 0;
+    max = 0;
     for (int i = 0; i < 10; i++)
     {
-        if (X[i] > X[res])
+        if (X[i] > X[max])
         {
-            res = i;
+            max = i;
             
         }
         
@@ -23,10 +23,8 @@ void max_value(Eigen::VectorXd X, int& res)
     
 }
 
-
-int main() {
-
-    //rapidcsv::Document doc("../data/test.csv", rapidcsv::SeparatorParams(';'));
+void prediction(string path, int& res)
+{
     rapidcsv::Document bias("../data/bias.csv", rapidcsv::LabelParams(-1, -1), rapidcsv::SeparatorParams(','));
     rapidcsv::Document w("../data/coef.csv", rapidcsv::LabelParams(-1, -1), rapidcsv::SeparatorParams(','));
     
@@ -49,8 +47,8 @@ int main() {
         
     } 
 
-    string PATH = "../hiphop.00004.au";
-    DataVector data = readAuFile(PATH);
+    
+    DataVector data = readAuFile(path);
     auto bins = stft(data);
     auto ms = binsavgstd(bins);
 
@@ -59,33 +57,20 @@ int main() {
         X(i, 0) = ms[i];
     }
 
-
-    Eigen::VectorXd res;
-    res = w_mat * X + bias_mat;
+    Eigen::VectorXd pred;
+    pred = w_mat * X + bias_mat;
 
     int argmax;
 
-    max_value(res, argmax);
+    max_value(pred, argmax);
     
-    cout << argmax << endl;
+    res = argmax;
+}
 
-
-
-    
-
-
-    
-    
-     
-    // cout << "bias"  << bias_mat << endl;
-    //cout << "w "  << w.GetCell<float>(511, 9) << endl;
-
-     
-     
-
-
-
-
-
-
+int main(int argc, char* argv[]) {
+    std::vector<string> class_name={ "blues" , "classical" , "country" , "disco" , "hiphop" , "jazz" , "metal" , "pop" , "reggae" , "rock"};
+    string path = argv[1];
+    int res; 
+    prediction(path, res);
+    cout << class_name[res];
 }

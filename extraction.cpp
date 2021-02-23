@@ -8,8 +8,7 @@
 using namespace std;
 
 int main() {
-    /* string path_read = "./disco.00050.au"; 
-    DataVector data = readAuFile(path_read); */
+    
     std::vector<string> class_name={ "blues" , "classical" , "country" , "disco" , "hiphop" , "jazz" , "metal" , "pop" , "reggae" , "rock"};
     std::vector<string> class_number={ "0" , "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9"};
     
@@ -37,7 +36,7 @@ int main() {
             auto ms = binsavgstd(bins);
             for (int i = 0; i < ms.size(); i++)
             {
-                /* code */
+                
                 csv << ms[i];
             }
 
